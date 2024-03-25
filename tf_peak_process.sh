@@ -1,4 +1,5 @@
 #!/bin/bash
+# Download and process TF ChIP Seq peak data from Factorbook
 
 # Function to check if a file exists
 file_exists() {
