@@ -1,6 +1,4 @@
-#!/usr/bin/python
 # Split cell type sepcific bed files by Transcription Factors
-
 #Usage: python splitBed_TF.py ByCellType/
 
 import os
