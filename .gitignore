@@ -4,3 +4,7 @@ tmp/
 ByCellType/
 *.tab
 *.txt
+peaks/
+motif/
+hg19.fa
+hg19.fa.fai
