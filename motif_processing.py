@@ -71,7 +71,9 @@ def add_reference(input_file, output_file):
             start = fields[1]
             end = fields[2]
             strand = fields[5]
-            sequenceID = f"{chromosome}:{start}-{end}"
+            start_position = int(start) + 1 # to convert from 0 to 1-based coordinates for samtools
+            sequenceID = f"{chromosome}:{start_position}-{end}"
+            #sequenceID = f"{chromosome}:{start}-{end}"
             
             if strand == '+':
                 hg19_sequence = get_reference(sequenceID)
