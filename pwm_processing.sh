@@ -14,7 +14,7 @@ download_file() {
         wget "$url" || { echo "Error downloading $url"; exit 1; }
     fi
 
-    # Decompress the downloaded file if it's a gzip file
+    # Decompress the downloaded file
     if [[ "$filename" == *.gz ]]; then
         gunzip -f "$filename"
         filename="${filename%.gz}"
@@ -52,14 +52,15 @@ process_pwm() {
         output_file="$output_dir/$motif.pwm"
         
         # Write motif and length to the output file
-        echo -e "$motif\t$length" > "$output_file"
+        echo -e ">$motif\t$length" > "$output_file"
         
         # Split the pwm by tabs, replace commas with spaces, and write each element to a new line in the output file
         IFS=$'\t' read -ra pwm_array <<< "$pwm"
-        for value in "${pwm_array[@]}"; do
-            # Replace commas with spaces in each value
-            formatted_value=$(echo "$value" | tr ',' ' ')
-            echo "$formatted_value" >> "$output_file"
+        for rows in "${pwm_array[@]}"; do
+            # Replace commas with spaces in each rows
+            #formatted_rows=$(printf "%.2f" $(echo "$rows" | tr ',' ' '))
+            formatted_rows=$(echo "$rows" | tr ',' ' ')
+            echo "$formatted_rows" >> "$output_file"
         done
     done < "$input_file"
     
