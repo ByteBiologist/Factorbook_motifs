@@ -58,7 +58,7 @@ done
 # Numbering the experiments
 zcat wgEncodeRegTfbsClusteredInputsV3.tab.gz | awk '{print $0 "\t" NR-1}' > numbered_wgEncodeRegTfbsClusteredInputsV3.tab
 
-# Normalize comma-separated values in last 2 columns
+# Normalize comma-separated rowss in last 2 columns
 zcat wgEncodeRegTfbsClusteredV3.bed.gz | awk 'BEGIN {OFS="\t"} {$1=$1;t=$0;} {while (index($0,",")){gsub(/,[[:alnum:],]*/,""); print; $0=t; gsub(OFS "[[:alnum:]]*,",OFS); t=$0;} print t}' > normalized.wgEncodeRegTfbsClusteredV3.bed 
 
 # Map Experiment_number (column $7) in tmp.wgEncodeRegTfbsClusteredV3.bed to numbered_wgEncodeRegTfbsClusteredInputsV3.tab
