@@ -24,14 +24,14 @@ def perform_bedtools_intersect(motif_file, input_file, output_file):
                 # Split the line into columns
                 columns = line.split('\t')
                 
-                # Format columns 9, 10, and 11 as "chr1:10006-10614"
-                coordinates = f"{columns[8]}:{columns[9]}-{columns[10]}"
+                # Format columns 8, 9 and 10 as "chr1:10006-10614"
+                coordinates = f"{columns[7]}:{columns[8]}-{columns[9]}"
                 
-                # Concatenate columns starting from the 14th column using ';'
-                concatenated_columns = ";".join([coordinates] + columns[11:])
+                # Join all the columns after the coordinates
+                concatenated_columns = ";".join([coordinates] + columns[10:])
                 
-                # Replace the columns in the output line
-                modified_line = "\t".join(columns[0:6] + [columns[7]] + [concatenated_columns])
+                # Final line
+                modified_line = "\t".join(columns[0:7] + [concatenated_columns])
                 
                 # Write the modified line to the output file
                 output.write(modified_line + '\n')
@@ -47,9 +47,9 @@ def perform_bedtools_intersect(motif_file, input_file, output_file):
     subprocess.run(bgzip_cmd)
 
 
-# Define the paths to the motif file and the directory containing Accessible chromatin files
-motif_file = "motif/factorbookMotifPosWithSequence.bed"
-peak_dir = "peaks/ByCellType/TF"
+# Paths to the motif file and the directory containing ChIP-seq peaks
+motif_file = "motif/factorbookMotifPosWithSequence.bed.gz"
+peak_dir = "peaks/ByCellType/TF/"
 output_dir = "mapping"  # New directory for output files
 
 # Create the "mapping" directory if it doesn't exist
@@ -59,11 +59,11 @@ if not os.path.exists(output_dir):
 # List all the Accessible chromatin files in the directory
 peak_files = [f for f in os.listdir(peak_dir) if f.endswith(".bed.gz")]
 
-# Loop through the chromatin files and perform bedtools intersect
+# Loop through the peak files and perform bedtools intersect
 for peak_file in peak_files:
     input_file = os.path.join(peak_dir, peak_file)
 
-    # Extract the sample ID from the input file name (Sample_XXXX)
+    # Extract the file name
     filename = "_".join(peak_file.split(".")[:3])
 
     # Construct the output file name
