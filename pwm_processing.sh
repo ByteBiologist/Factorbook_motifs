@@ -49,7 +49,7 @@ process_pwm() {
     # Iterate through each line in the input file
     while IFS=$'\t' read -r motif length pwm; do
         # Create output file name
-        output_file="$output_dir/$motif.pwm"
+        output_file="$output_dir/$motif.pfm"
         
         # Write motif and length to the output file
         echo -e ">$motif\t$length" > "$output_file"
