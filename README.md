@@ -1,6 +1,7 @@
 # Factorbook UCSC
 
-Transcription Factor ChIP-seq Clusters (161 factors) from ENCODE with Factorbook Motifs
+Transcription Factor ChIP-seq Clusters (161 factors) from ENCODE with Factorbook Motifs.
+
 This repository contains scripts to process TF data from UCSC https://genome.ucsc.edu/cgi-bin/hgTrackUi?hgsid=2057466232_cZzcnxdDVYXVhETfI6CnhaQ9isID&c=chr1&g=wgEncodeRegTfbsClusteredV3
 
 Usage:
