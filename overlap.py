@@ -14,7 +14,7 @@ def perform_bedtools_intersect(motif_file, input_file, output_file):
         process = subprocess.run(cmd, stdout=subprocess.PIPE, text=True)
         
         # Define the header
-        header = "#chrom\tchromStart\tchromEnd\tmotif_id\tscore\tstrand\tbinding_sequence\tpeak_region"
+        header = "#chrom\tchromStart\tchromEnd\tmotif_id\t-log10(qvalue)\tstrand\tqvalue\tbinding_sequence\tpeak_region"
         
         # Write the header to the output file
         output.write(header + '\n')
@@ -24,14 +24,14 @@ def perform_bedtools_intersect(motif_file, input_file, output_file):
                 # Split the line into columns
                 columns = line.split('\t')
                 
-                # Format columns 8, 9 and 10 as "chr1:10006-10614"
-                coordinates = f"{columns[7]}:{columns[8]}-{columns[9]}"
+                # Format columns 9, 10 and 11 as "chr1:10006-10614"
+                coordinates = f"{columns[8]}:{columns[9]}-{columns[10]}"
                 
                 # Join all the columns after the coordinates
-                concatenated_columns = ";".join([coordinates] + columns[10:])
+                concatenated_columns = ";".join([coordinates] + columns[11:])
                 
                 # Final line
-                modified_line = "\t".join(columns[0:7] + [concatenated_columns])
+                modified_line = "\t".join(columns[0:8] + [concatenated_columns])
                 
                 # Write the modified line to the output file
                 output.write(modified_line + '\n')
