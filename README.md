@@ -4,6 +4,18 @@ Transcription Factor ChIP-seq Clusters (161 factors) from ENCODE with Factorbook
 
 This repository contains scripts to process TF data from UCSC https://genome.ucsc.edu/cgi-bin/hgTrackUi?hgsid=2057466232_cZzcnxdDVYXVhETfI6CnhaQ9isID&c=chr1&g=wgEncodeRegTfbsClusteredV3
 
+## Installation
+1. Clone this repository:
+    ```bash
+    git clone git@github.com:ByteBiologist/Factorbook_v1_UCSC.git
+    cd factorbook_v1_UCSC
+    ```
+2. Dependencies:
+   * bedtools
+   * samtools
+   * hg19 reference genome "hg19.fa"
+
+
 Usage:
 
 ### Step 1) ChIP-seq peaks
