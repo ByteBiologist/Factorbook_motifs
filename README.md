@@ -16,7 +16,7 @@ This repository contains scripts to process TF data from UCSC https://genome.ucs
    * hg19 reference genome "hg19.fa"
 
 
-##Usage:
+## Usage:
 
 #### Step 1) ChIP-seq peaks
 Download and process peak dataset. The output is processed peak data split by cell type.
