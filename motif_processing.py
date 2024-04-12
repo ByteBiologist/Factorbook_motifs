@@ -98,7 +98,7 @@ def add_reference(input_file, output_file):
             fields.append(hg19_sequence)
             
             # Filter the motifs with score less than -log(0.2)
-            if score >= 0.69:
+            if score > 0.69:
                 f_out.write('\t'.join(fields) + '\n')
 
     print(f"Processed data written to {output_file}")
