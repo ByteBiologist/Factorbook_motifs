@@ -16,24 +16,24 @@ This repository contains scripts to process TF data from UCSC https://genome.ucs
    * hg19 reference genome "hg19.fa"
 
 
-Usage:
+##Usage:
 
-### Step 1) ChIP-seq peaks
+#### Step 1) ChIP-seq peaks
 Download and process peak dataset. The output is processed peak data split by cell type.
   * **bash tf_peak_processing.sh**
 
-### Step 1a) Split peak data further by Transcription factors
+#### Step 1a) Split peak data further by Transcription factors
 Provide output directory as an argument.
   * **python splitBed_TF.py ByCellType**
 
-### Step 2) Factorbook motifs
+#### Step 2) Factorbook motifs
 Download, normalize and process Factorbook motifs.
   * **python motif_processing.py**
 
-### Step 3) pfm 
+#### Step 3) pfm 
 Downlad position frequency matrix for motis and write individual pfm files.
   * **bash pwm_processing.sh**
 
-### Step 4) overlap motifs with peak
+#### Step 4) overlap motifs with peak
 Perform bedtools intersect to find the overlapping regions with motifs.
   * **python overlap.py**
