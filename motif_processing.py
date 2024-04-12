@@ -64,7 +64,7 @@ def add_reference(input_file, output_file):
     with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
 
         # Define the header
-        header = "#chrom\tchromStart\tchromEnd\tname\tscore\tstrand\tbinding_sequence"
+        header = "#chrom\tchromStart\tchromEnd\tmotifID\t-log10(qvalue)\tstrand\tqvalue\tbinding_sequence"
 
         # Write the header to the output file
         f_out.write(header + '\n')
@@ -75,7 +75,7 @@ def add_reference(input_file, output_file):
             start = fields[1]
             end = fields[2]
             name = fields[3]
-            score = float(fields[4])  
+            score = float(fields[4])
             strand = fields[5]
             start_position = int(start) + 1 # to convert from 0 to 1-based coordinates for samtools
             sequenceID = f"{chromosome}:{start_position}-{end}"
@@ -94,11 +94,15 @@ def add_reference(input_file, output_file):
                 print("Invalid strand information.")
                 continue
             
-            # Append the hg19_sequence to the fields
-            fields.append(hg19_sequence)
+            # Calculate qvalue
+            qvalue = 10 ** (-score)
+            qvalue_str = "{:.2e}".format(qvalue)
+
+            # Append the hg19_sequence and qvalue to the fields
+            fields.extend([qvalue_str, hg19_sequence])
             
             # Filter the motifs with score less than -log(0.2)
-            if score > 0.69:
+            if score > 0.69: 
                 f_out.write('\t'.join(fields) + '\n')
 
     print(f"Processed data written to {output_file}")
