@@ -13,7 +13,7 @@ This repository contains scripts to process TF data from UCSC https://genome.ucs
 2. Dependencies:
    * bedtools
    * samtools
-   * hg19 reference genome "hg19.fa"
+   * hg19 reference genome "hg19.fa" [https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz]
 
 
 ## Usage:
